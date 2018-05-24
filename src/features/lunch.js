@@ -12,7 +12,7 @@ function handleLunch(lc, respond, seed) {
   inBeijingQuery.equalTo('location', 'beijing');
   const query = lc.Query.and(notPartTimeQuery, notInActiveQuery);
   query.find().then(users => {
-    const shuffledUsers = shuffleSeed(users, seed);
+    const shuffledUsers = shuffleSeed.shuffle(users, seed);
     const maxGroupSize = Math.ceil(users.length/5);
     const groups = splitArray(shuffledUsers, maxGroupSize);
     let response = '国宴邀请名单：\n';
