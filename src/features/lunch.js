@@ -10,15 +10,17 @@ function handleLunch(lc, respond, seed) {
   notInActiveQuery.notEqualTo('status', 'inactive');
   const inBeijingQuery = new lc.Query('_User');
   inBeijingQuery.equalTo('location', 'beijing');
-  const query = lc.Query.and(notPartTimeQuery, notInActiveQuery);
+  const query = lc.Query.and(notPartTimeQuery, notInActiveQuery,
+    inBeijingQuery);
   query.find().then(users => {
     const shuffledUsers = shuffleSeed.shuffle(users, seed);
-    const maxGroupSize = Math.ceil(users.length/5);
+    let maxGroupSize = Math.floor(users.length / 5);
+    if (users.length % 5 > 0) ++maxGroupSize;
     const groups = splitArray(shuffledUsers, maxGroupSize);
     let response = '国宴邀请名单：\n';
     groups.forEach((group, i) => {
       const names = group.map(user => user.get('realName'));
-      response += `周 ${i}：${names.join('，')}\n`;
+      response += `周 ${i+1}：${names.join('，')}\n`;
     });
     respond(response);
   }).catch(error => {
