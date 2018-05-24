@@ -2,11 +2,13 @@
   "name": "zhangzhe-le",
   "version": "1.0.0",
   "description": "The Oracle",
-  "main": "index.js",
+  "main": "src/index.js",
   "author": "Hong Jiang <hjiang@leancloud.rocks>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/index.js",
+    "lint": "node_modules/.bin/eslint src/**/*.js",
+    "lint:fix": "node_modules/.bin/eslint --fix src/**/*.js"
   },
   "dependencies": {
     "leancloud-storage": "^3.6.8",
@@ -14,6 +16,10 @@
     "role-model": "^0.1.0"
   },
   "engines": {
-    "node": "*"
+    "node": ">=8.x"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-plugin-node": "^6.0.1"
   }
 }
