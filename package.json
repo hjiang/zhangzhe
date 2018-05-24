@@ -1,0 +1,19 @@
+{
+  "name": "zhangzhe-le",
+  "version": "1.0.0",
+  "description": "The Oracle",
+  "main": "index.js",
+  "author": "Hong Jiang <hjiang@leancloud.rocks>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "leancloud-storage": "^3.6.8",
+    "leanengine": "^3.2.0",
+    "role-model": "^0.1.0"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
