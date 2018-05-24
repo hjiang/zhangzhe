@@ -14,13 +14,17 @@ function handleLunch(lc, respond, seed) {
     inBeijingQuery);
   query.find().then(users => {
     const shuffledUsers = shuffleSeed.shuffle(users, seed);
-    let maxGroupSize = Math.floor(users.length / 5);
-    if (users.length % 5 > 0) ++maxGroupSize;
-    const groups = splitArray(shuffledUsers, maxGroupSize);
+    let groupSize = Math.floor(users.length / 5);
+    const remainder = users.length % 5;
+    const remainingUsers = shuffledUsers.splice(shuffledUsers.length - remainder);
+    const groups = splitArray(shuffledUsers, groupSize);
+    remainingUsers.forEach((user, i) => {
+      groups[i].push(user);
+    });
     let response = '国宴邀请名单：\n';
     groups.forEach((group, i) => {
       const names = group.map(user => user.get('realName'));
-      response += `周 ${i+1}：${names.join('，')}\n`;
+      response += `周 ${i + 1}：${names.join('，')}\n`;
     });
     respond(response);
   }).catch(error => {
