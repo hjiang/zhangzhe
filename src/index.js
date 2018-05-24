@@ -1,5 +1,6 @@
 const role = require('role-model');
 const vacation = require('./features/vacation');
+const lunch = require('./features/lunch');
 
 const app = role.createRobotApp({
   chatService: 'bearychat',
@@ -17,6 +18,14 @@ app.robot.addHandler(['ping'],
 
 app.robot.addHandler(['vacation'], ctx => {
   vacation.handleVacation(lc, ctx.respond);
+});
+
+app.robot.addHandler(['本周国宴'], ctx => {
+  lunch.handleLunchThisWeek(lc, ctx.respond);
+});
+
+app.robot.addHandler(['下周国宴'], ctx => {
+  lunch.handleLunchNextWeek(lc, ctx.respond);
 });
 
 app.run();

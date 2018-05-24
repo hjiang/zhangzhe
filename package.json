@@ -12,9 +12,12 @@
     "precommit": "yarn lint"
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
     "leancloud-storage": "^3.6.8",
     "leanengine": "^3.2.0",
-    "role-model": "^0.1.0"
+    "role-model": "^0.1.0",
+    "shuffle-seed": "^1.1.6",
+    "split-array": "^1.0.1"
   },
   "engines": {
     "node": ">=8.x"
