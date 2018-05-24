@@ -31,7 +31,7 @@ app.robot.addHandler(['vacation'], ctx => {
       return endDate > endOfToday || endTime == 'PM';
     });
     if (results.length == 0) {
-      msg.send('今天大家都在。Excited!');
+      ctx.respond('今天大家都在。Excited!');
     } else {
       var resp = '今天缺席的常委有：\n';
       for (var i = 0; i < results.length; i++) {
@@ -43,10 +43,10 @@ app.robot.addHandler(['vacation'], ctx => {
         resp += result.get('endDate').toDateString() + ' ' + result.get('endTime');
         resp += '\n';
       }
-      msg.send(resp);
+      ctx.respond(resp);
     }
   }, function (error) {
-    msg.send('查询错误。I am angry!! ' + error.code + ' ' + error.message);
+    ctx.respond('查询错误。I am angry!! ' + error.code + ' ' + error.message);
   });
 });
 
