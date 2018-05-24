@@ -28,7 +28,7 @@ function handleLunch(lc, respond, seed) {
     });
     respond(response);
   }).catch(error => {
-    respond('查询错误。I am angry!! ' + error.code + ' ' + error.message);
+    respond(`查询错误。I am angry!! ${error.code}: ${error.message}`);
   });
 }
 
