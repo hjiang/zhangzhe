@@ -14,7 +14,7 @@ const lc = app.leanEngine;
 lc.Cloud.useMasterKey();
 
 app.robot.addHandler(['ping'],
-  context => context.respond('pong'));
+  ctx => ctx.respond('pong'));
 
 app.robot.addHandler(['vacation'], ctx => {
   vacation.handleVacation(lc, ctx.respond);

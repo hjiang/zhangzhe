@@ -31,7 +31,7 @@ function handleVacation(lc, respond) {
       respond(resp);
     }
   }, function (error) {
-    respond('查询错误。I am angry!! ' + error.code + ' ' + error.message);
+    respond(`查询错误。I am angry!! ${error.code}: ${error.message}`);
   });
 }
 
