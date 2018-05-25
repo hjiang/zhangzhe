@@ -1179,6 +1179,10 @@ qs@6.5.2, qs@^6.5.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
+quiche@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/quiche/-/quiche-0.3.0.tgz#84a12db9510d390d9f45af4e2dba9780cd5ff959"
+
 range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
