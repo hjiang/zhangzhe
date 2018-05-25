@@ -1252,8 +1252,8 @@ rimraf@^2.2.8:
     glob "^7.0.5"
 
 role-model@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/role-model/-/role-model-0.1.0.tgz#43fb33b90f2f3c70cec22438d0ba419c689342ed"
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/role-model/-/role-model-0.1.1.tgz#7b202299dd392f03875d2838f80b5dc9ff2f690d"
   dependencies:
     body-parser "^1.15.1"
     express "^4.13.4"
