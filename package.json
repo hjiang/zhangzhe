@@ -17,7 +17,7 @@
     "leancloud-storage": "^3.6.8",
     "leanengine": "^3.2.0",
     "quiche": "^0.3.0",
-    "role-model": "^0.1.0",
+    "role-model": "https://github.com/hjiang/role-model.git#zulip",
     "shuffle-seed": "^1.1.6",
     "split-array": "^1.0.1"
   },

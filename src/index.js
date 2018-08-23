@@ -4,11 +4,8 @@ const lunch = require('./features/lunch');
 const urlShortener = require('./features/url-shortener');
 
 const app = role.createRobotApp({
-  chatService: 'bearychat',
-  chatServiceOptions: {
-    team: process.env.BEARYCHAT_TEAM,
-    token: process.env.BEARYCHAT_TOKEN
-  }
+  chatService: 'zulip',
+  chatServiceOptions: {}
 });
 
 const lc = app.leanEngine;

@@ -1255,9 +1255,9 @@ rimraf@^2.2.8:
   dependencies:
     glob "^7.0.5"
 
-role-model@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/role-model/-/role-model-0.1.1.tgz#7b202299dd392f03875d2838f80b5dc9ff2f690d"
+"role-model@https://github.com/hjiang/role-model.git#zulip":
+  version "0.1.2"
+  resolved "https://github.com/hjiang/role-model.git#0014a1628421893241570d1da7cda96c92eaa841"
   dependencies:
     body-parser "^1.15.1"
     express "^4.13.4"
