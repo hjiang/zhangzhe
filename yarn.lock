@@ -1255,9 +1255,8 @@ rimraf@^2.2.8:
   dependencies:
     glob "^7.0.5"
 
-"role-model@https://github.com/hjiang/role-model.git#zulip":
+role-model@../role-model:
   version "0.1.2"
-  resolved "https://github.com/hjiang/role-model.git#0014a1628421893241570d1da7cda96c92eaa841"
   dependencies:
     body-parser "^1.15.1"
     express "^4.13.4"

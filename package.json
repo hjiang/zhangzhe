@@ -14,10 +14,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
-    "leancloud-storage": "^3.6.8",
+    "leancloud-storage": "^3.10.0",
     "leanengine": "^3.2.0",
     "quiche": "^0.3.0",
-    "role-model": "https://github.com/hjiang/role-model.git#66ae93a",
+    "role-model": "https://github.com/hjiang/role-model.git#ebda7b85abd2ddc8706dd9a6a55758638b4496bd",
     "shuffle-seed": "^1.1.6",
     "split-array": "^1.0.1"
   },
