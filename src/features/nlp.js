@@ -1,4 +1,5 @@
 const { NlpManager, Language } = require('node-nlp');
+const { handleVacation } = require('./vacation');
 
 async function initManager(lc) {
   const manager = new NlpManager({ languages: ['zh', 'en'] });
@@ -56,11 +57,15 @@ async function handleAddAnswer(lc, ctx) {
 async function genAnswer(lc, ctx) {
   const manager = await initManager(lc);
   const result = await manager.process(ctx.matches[0].trim());
-  const answer =
-    result.score > 0.6 && result.answer
-      ? result.answer
-      : '我对不起，无可奉告。';
-  ctx.respond(answer);
+  if (result.intent === 'ask.vacation') {
+    handleVacation(lc, ctx.respond);
+  } else {
+    const answer =
+      result.score > 0.6 && result.answer
+        ? result.answer
+        : '我对不起，无可奉告。';
+    ctx.respond(answer);
+  }
 }
 
 module.exports = { handleTrainIntent, handleAddAnswer, genAnswer };
