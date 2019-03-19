@@ -10,7 +10,7 @@
     "lint": "node_modules/.bin/eslint src/**/*.js",
     "lint:fix": "node_modules/.bin/eslint --fix src/**/*.js",
     "precommit": "yarn test && yarn lint",
-    "test": "jest"
+    "test": "jest --env node"
   },
   "dependencies": {
     "axios": "^0.18.0",

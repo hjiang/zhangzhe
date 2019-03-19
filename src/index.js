@@ -32,8 +32,12 @@ app.robot.addHandler(/shorten (https*:\/\/.*)/, ctx => {
   urlShortener.shorten(ctx);
 });
 
-app.robot.addHandler(/trainIntent (.*)=(.*)/, ctx => {
+app.robot.addHandler(/trainIntent (.*)=>(.*)/, ctx => {
   nlp.handleTrainIntent(lc, ctx)
+});
+
+app.robot.addHandler(/(.*)/, ctx => {
+  nlp.genAnswer(lc, ctx)
 });
 
 app.run();
