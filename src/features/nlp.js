@@ -1,4 +1,4 @@
-const { NlpManager } = require('node-nlp');
+const { NlpManager, Language } = require('node-nlp');
 
 async function initManager(lc) {
   const manager = new NlpManager({ languages: ['zh', 'en'] });
@@ -27,10 +27,12 @@ async function exportModel(lc, manager) {
 }
 
 async function handleTrainIntent(lc, ctx) {
-  const manager = initManager(lc);
-  const sentence = ctx.matches[1];
-  const intent = ctx.matches[2];
-  manager.addDocument('zh', sentence, intent);
+  const language = new Language();
+  const manager = await initManager(lc);
+  const sentence = ctx.matches[1].trim();
+  const intent = ctx.matches[2].trim();
+  const lang = language.guessBest(sentence, ['zh', 'en']).alpha2;
+  manager.addDocument(lang, sentence, intent);
   await manager.train();
   await exportModel(lc, manager);
   ctx.respond('学习了一个');

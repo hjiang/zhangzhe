@@ -1,9 +1,10 @@
 module.exports = {
     "env": {
         "es6": true,
-        "node": true
+        "node": true,
+        "jest/globals": true
     },
-    "plugins": ["node"],
+    "plugins": ["node", "jest"],
     "extends": ["eslint:recommended", "plugin:node/recommended"],
     "rules": {
         "indent": [

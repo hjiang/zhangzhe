@@ -9,7 +9,8 @@
     "start": "node src/index.js",
     "lint": "node_modules/.bin/eslint src/**/*.js",
     "lint:fix": "node_modules/.bin/eslint --fix src/**/*.js",
-    "precommit": "yarn lint"
+    "precommit": "yarn test && yarn lint",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -26,8 +27,10 @@
     "node": ">=8.x"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "eslint": "^5.15.3",
+    "eslint-plugin-jest": "^22.4.1",
     "eslint-plugin-node": "^6.0.1",
-    "husky": "^0.14.3"
+    "husky": "^0.14.3",
+    "jest": "^24.5.0"
   }
 }
