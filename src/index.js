@@ -36,6 +36,10 @@ app.robot.addHandler(/trainIntent (.*)=>(.*)/, ctx => {
   nlp.handleTrainIntent(lc, ctx)
 });
 
+app.robot.addHandler(/addAnswer (.*)=>(.*)/, ctx => {
+  nlp.handleAddAnswer(lc, ctx)
+});
+
 app.robot.addHandler(/(.*)/, ctx => {
   nlp.genAnswer(lc, ctx)
 });
