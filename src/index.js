@@ -2,6 +2,7 @@ const role = require('role-model');
 const vacation = require('./features/vacation');
 const lunch = require('./features/lunch');
 const urlShortener = require('./features/url-shortener');
+const nlp = require('./features/nlp');
 
 const app = role.createRobotApp({
   chatService: 'zulip',
@@ -29,6 +30,10 @@ app.robot.addHandler(/qr (https*:\/\/.*)/, ctx => {
 
 app.robot.addHandler(/shorten (https*:\/\/.*)/, ctx => {
   urlShortener.shorten(ctx);
+});
+
+app.robot.addHandler(/trainIntent (.*)=(.*)/, ctx => {
+  nlp.handleTrainIntent(lc, ctx)
 });
 
 app.run();

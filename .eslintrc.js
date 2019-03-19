@@ -22,6 +22,7 @@ module.exports = {
             "error",
             "always"
         ],
-        "node/exports-style": ["error", "module.exports"]
+        "node/exports-style": ["error", "module.exports"],
+        "no-console": 0
     }
 };
