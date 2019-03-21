@@ -11,7 +11,7 @@ const app = role.createRobotApp({
 const lc = app.leanEngine;
 lc.Cloud.useMasterKey();
 
-app.robot.addHandler(/^vacation/, ctx => {
+app.robot.addHandler(/^\s*vacation\s*$/, ctx => {
   vacation.handleVacation(lc, ctx.respond);
 });
 

@@ -9,7 +9,7 @@
     "start": "node src/index.js",
     "lint": "node_modules/.bin/eslint src/**/*.js",
     "lint:fix": "node_modules/.bin/eslint --fix src/**/*.js",
-    "precommit": "yarn test && yarn lint",
+    "precommit": "yarn lint",
     "test": "jest --env node"
   },
   "dependencies": {
