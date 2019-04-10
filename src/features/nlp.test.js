@@ -30,3 +30,13 @@ test('genAnswer works', async () => {
   await nlp.genAnswer(lc, ctx);
   expect(ctx.respond.mock.calls.length).toBe(1);
 });
+
+test('External bot works', async () => {
+  const ctx = {
+    matches: ['苟利国家生死以', ''],
+    respond: jest.fn(() => {})
+  };
+  await nlp.genAnswer(lc, ctx);
+  expect(ctx.respond.mock.calls.length).toBe(1);
+  expect(ctx.respond.mock.calls[0][0]).toMatch(/岂因祸福避趋之/);
+});

@@ -77,7 +77,7 @@ async function genAnswer(lc, ctx) {
 
 async function externalRobotAnswer(textInput) {
   const apiKey = process.env.EXTERNAL_BOT_API_KEY;
-  axios({
+  const result = await axios({
     method: 'post',
     url: 'http://openapi.tuling123.com/openapi/api/v2',
     data: {
@@ -89,21 +89,20 @@ async function externalRobotAnswer(textInput) {
       },
       'userInfo': {
         'apiKey': apiKey,
-        'userId': 'user'
+        'userId': Math.random().toString(36).substring(2, 15)
       }
     }
-  }).then(result => {
-    if (result.data.results && result.data.results.length > 0) {
-      const firstTextResult = result.data.results.find(r => r.values.text);
-      if (firstTextResult) {
-        return firstTextResult.values.text;
-      } else {
-        return undefined;
-      }
+  });
+  if (result.data.results && result.data.results.length > 0) {
+    const firstTextResult = result.data.results.find(r => r.values.text);
+    if (firstTextResult) {
+      return firstTextResult.values.text;
     } else {
       return undefined;
     }
-  });
+  } else {
+    return undefined;
+  }
 }
 
 module.exports = { handleTrainIntent, handleAddAnswer, genAnswer };
