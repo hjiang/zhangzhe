@@ -1,5 +1,6 @@
 const { NlpManager, Language } = require('node-nlp');
 const { handleVacation } = require('./vacation');
+const axios = require('axios');
 
 async function initManager(lc) {
   const manager = new NlpManager({ languages: ['zh', 'en'] });
@@ -56,16 +57,53 @@ async function handleAddAnswer(lc, ctx) {
 
 async function genAnswer(lc, ctx) {
   const manager = await initManager(lc);
-  const result = await manager.process(ctx.matches[0].trim());
+  const input = ctx.matches[0].trim();
+  const result = await manager.process(input);
   if (result.intent === 'ask.vacation') {
     handleVacation(lc, ctx.respond);
   } else {
-    const answer =
-      result.score > 0.6 && result.answer
-        ? result.answer
-        : '我对不起，无可奉告。';
+    let answer = '我对不起，无可奉告。';
+    if (result.score > 0.6 && result.answer) {
+      answer = result.answer;
+    } else {
+      const externalAnswer = await externalRobotAnswer(input);
+      if (externalAnswer) {
+        answer = externalAnswer;
+      }
+    }
     ctx.respond(answer);
   }
+}
+
+async function externalRobotAnswer(textInput) {
+  const apiKey = process.env.EXTERNAL_BOT_API_KEY;
+  axios({
+    method: 'post',
+    url: 'http://openapi.tuling123.com/openapi/api/v2',
+    data: {
+      'reqType':0,
+      'perception': {
+        'inputText': {
+          'text': textInput
+        }
+      },
+      'userInfo': {
+        'apiKey': apiKey,
+        'userId': 'user'
+      }
+    }
+  }).then(result => {
+    if (result.data.results && result.data.results.length > 0) {
+      const firstTextResult = result.data.results.find(r => r.values.text);
+      if (firstTextResult) {
+        return firstTextResult.values.text;
+      } else {
+        return undefined;
+      }
+    } else {
+      return undefined;
+    }
+  });
 }
 
 module.exports = { handleTrainIntent, handleAddAnswer, genAnswer };

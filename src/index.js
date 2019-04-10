@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const role = require('role-model');
 const vacation = require('./features/vacation');
 const urlShortener = require('./features/url-shortener');

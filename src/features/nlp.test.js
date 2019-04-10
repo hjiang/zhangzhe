@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const nlp = require('./nlp');
 const lc = require('leancloud-storage');
 lc.init(process.env.LC_TEST_APP_ID, process.env.LC_TEST_APP_KEY);
