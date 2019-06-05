@@ -2,10 +2,10 @@ function handleVacation(lc, ctx) {
   const dateStr = ctx.matches[1];
   const respond = ctx.respond;
   var query = new lc.Query('Leave');
-  var startOfToday = new Date(dateStr);
+  var startOfToday = dateStr ? new Date(dateStr) : new Date();
   startOfToday.setHours(0);
   startOfToday.setMinutes(0);
-  var endOfToday = new Date(dateStr);
+  var endOfToday = dateStr ? new Date(dateStr) : new Date();
   endOfToday.setHours(23);
   endOfToday.setMinutes(59);
 
