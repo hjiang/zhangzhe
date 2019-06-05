@@ -14,7 +14,11 @@ const lc = app.leanEngine;
 lc.Cloud.useMasterKey();
 
 app.robot.addHandler(/^\s*vacation\s*$/, ctx => {
-  vacation.handleVacation(lc, ctx.respond);
+  vacation.handleVacation(lc, ctx);
+});
+
+app.robot.addHandler(/^\s*vacation\s*$/, ctx => {
+  vacation.handleVacation(lc, ctx);
 });
 
 app.robot.addHandler(/qr (https*:\/\/.*)/, ctx => {
@@ -26,15 +30,15 @@ app.robot.addHandler(/shorten (https*:\/\/.*)/, ctx => {
 });
 
 app.robot.addHandler(/trainIntent (.*)=>(.*)/, ctx => {
-  nlp.handleTrainIntent(lc, ctx)
+  nlp.handleTrainIntent(lc, ctx);
 });
 
 app.robot.addHandler(/addAnswer (.*)=>(.*)/, ctx => {
-  nlp.handleAddAnswer(lc, ctx)
+  nlp.handleAddAnswer(lc, ctx);
 });
 
 app.robot.addHandler(/(.*)/, ctx => {
-  nlp.genAnswer(lc, ctx)
+  nlp.genAnswer(lc, ctx);
 });
 
 app.run();

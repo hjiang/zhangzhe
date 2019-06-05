@@ -60,7 +60,7 @@ async function genAnswer(lc, ctx) {
   const input = ctx.matches[0].trim();
   const result = await manager.process(input);
   if (result.intent === 'ask.vacation') {
-    handleVacation(lc, ctx.respond);
+    handleVacation(lc, ctx);
   } else {
     let answer = '我对不起，无可奉告。';
     if (result.score > 0.6 && result.answer) {
@@ -81,15 +81,17 @@ async function externalRobotAnswer(textInput) {
     method: 'post',
     url: 'http://openapi.tuling123.com/openapi/api/v2',
     data: {
-      'reqType':0,
-      'perception': {
-        'inputText': {
-          'text': textInput
+      reqType: 0,
+      perception: {
+        inputText: {
+          text: textInput
         }
       },
-      'userInfo': {
-        'apiKey': apiKey,
-        'userId': Math.random().toString(36).substring(2, 15)
+      userInfo: {
+        apiKey: apiKey,
+        userId: Math.random()
+          .toString(36)
+          .substring(2, 15)
       }
     }
   });
