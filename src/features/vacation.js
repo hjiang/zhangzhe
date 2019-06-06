@@ -18,27 +18,37 @@ function handleVacation(lc, ctx) {
   query.greaterThanOrEqualTo('endDate', startOfToday);
   query.find().then(
     results => {
+      console.log('found');
       results = results.filter(result => {
         const endDate = result.get('endDate');
         const endTime = result.get('endTime');
         return endDate > endOfToday || endTime == 'PM';
       });
+      console.log('calculating date');
       const year = startOfToday.getFullYear();
       const month = startOfToday.getMonth() + 1;
       const day = startOfToday.getDate();
-      const cal = new CalendarChinese();
+      console.log('calculating chinese date');
+      const cal = new CalendarChinese.CalendarChinese();
       cal.fromDate(startOfToday);
+      let zzDay = cal.day;
+      if (zzDay < 10) {
+        zzDay = `初 ${zzDay}`;
+      } else {
+        zzDay = ` ${zzDay}`;
+      }
       const zzYear = year - 1926;
+      console.log('calculated');
       if (results.length == 0) {
         respond(
           `${year} 年 ${month} 月 ${day} 日（长者 ${zzYear} 年 ${
             cal.month
-          } 月 ${cal.day} 日）大家都在。Excited!`
+          } 月${zzDay}）大家都在。Excited!`
         );
       } else {
         var resp = `${year} 年 ${month} 月 ${day} 日（长者 ${zzYear} 年 ${
           cal.month
-        } 月 ${cal.day} 日）缺席的常委有：\n`;
+        } 月${zzDay}）缺席的常委有：\n`;
         for (var i = 0; i < results.length; i++) {
           var result = results[i];
           resp += (result.get('realName') || result.get('username')) + ': ';
