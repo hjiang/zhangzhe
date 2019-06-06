@@ -1,11 +1,16 @@
+const CalendarChinese = require('date-chinese');
+
 function handleVacation(lc, ctx) {
   const dateStr = ctx.matches[1];
   const respond = ctx.respond;
+  console.log(`Date: ${dateStr}`);
   var query = new lc.Query('Leave');
-  var startOfToday = dateStr ? new Date(dateStr) : new Date();
+  var startOfToday =
+    dateStr && dateStr.length > 0 ? new Date(dateStr) : new Date();
   startOfToday.setHours(0);
   startOfToday.setMinutes(0);
-  var endOfToday = dateStr ? new Date(dateStr) : new Date();
+  var endOfToday =
+    dateStr && dateStr.length > 0 ? new Date(dateStr) : new Date();
   endOfToday.setHours(23);
   endOfToday.setMinutes(59);
 
@@ -14,14 +19,26 @@ function handleVacation(lc, ctx) {
   query.find().then(
     results => {
       results = results.filter(result => {
-        var endDate = result.get('endDate');
-        var endTime = result.get('endTime');
+        const endDate = result.get('endDate');
+        const endTime = result.get('endTime');
         return endDate > endOfToday || endTime == 'PM';
       });
+      const year = startOfToday.getFullYear();
+      const month = startOfToday.getMonth() + 1;
+      const day = startOfToday.getDate();
+      const cal = new CalendarChinese();
+      cal.fromDate(startOfToday);
+      const zzYear = year - 1926;
       if (results.length == 0) {
-        respond('今天大家都在。Excited!');
+        respond(
+          `${year} 年 ${month} 月 ${day} 日（长者 ${zzYear} 年 ${
+            cal.month
+          } 月 ${cal.day} 日）大家都在。Excited!`
+        );
       } else {
-        var resp = '今天缺席的常委有：\n';
+        var resp = `${year} 年 ${month} 月 ${day} 日（长者 ${zzYear} 年 ${
+          cal.month
+        } 月 ${cal.day} 日）缺席的常委有：\n`;
         for (var i = 0; i < results.length; i++) {
           var result = results[i];
           resp += (result.get('realName') || result.get('username')) + ': ';

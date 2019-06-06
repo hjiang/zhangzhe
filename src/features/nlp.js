@@ -60,7 +60,7 @@ async function genAnswer(lc, ctx) {
   const input = ctx.matches[0].trim();
   const result = await manager.process(input);
   if (result.intent === 'ask.vacation') {
-    handleVacation(lc, ctx);
+    handleVacation(lc, { respond: ctx.respond });
   } else {
     let answer = '我对不起，无可奉告。';
     if (result.score > 0.6 && result.answer) {
