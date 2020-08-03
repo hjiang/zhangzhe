@@ -1,11 +1,19 @@
 const CalendarChinese = require('date-chinese');
 
+function isValidDate(d) {
+  return d instanceof Date && !isNaN(d);
+}
+
 function handleVacation(lc, ctx) {
   const dateStr = ctx.matches[1];
   const respond = ctx.respond;
   var query = new lc.Query('Leave');
   var startOfToday =
     dateStr && dateStr.length > 0 ? new Date(dateStr) : new Date();
+  if (!isValidDate(startOfToday)) {
+    respond(`Invalid date: ${dateStr}`);
+    return;
+  }
   startOfToday.setHours(0);
   startOfToday.setMinutes(0);
   var endOfToday =
