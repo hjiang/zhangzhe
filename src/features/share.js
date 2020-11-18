@@ -48,10 +48,13 @@ function getTitle(url) {
 
 async function createPost(ctx) {
   const msg = ctx.matches[1];
+  console.log(`received: ${msg}`);
   try {
     let { title, url, body } = parseMsg(msg);
+    console.log(`parsed: ${{ title, url, body }}`);
     if (!title || title.length === 0) {
       title = await getTitle(url);
+      console.log(`fetched title: ${title}`);
     }
     const discourse = discourseApi();
     const res = await discourse.post('/posts.json', {
@@ -61,6 +64,7 @@ async function createPost(ctx) {
     });
     ctx.respond(`https://talk.nextfe.com/t/topic/${res.data.topic_id}`);
   } catch (e) {
+    console.error(e);
     if (e.response) {
       ctx.respond('Error: ' + e.response.data);
     } else if (e.request) {
