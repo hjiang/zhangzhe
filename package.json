@@ -9,7 +9,7 @@
     "start": "node src/index.js",
     "lint": "node_modules/.bin/eslint src/**/*.js",
     "lint:fix": "node_modules/.bin/eslint --fix src/**/*.js",
-    "precommit": "yarn lint",
+    "precommit": "npm run lint",
     "test": "jest --env node"
   },
   "dependencies": {
@@ -28,7 +28,7 @@
     "split-array": "^1.0.1"
   },
   "engines": {
-    "node": ">=8.x"
+    "node": ">=14.x"
   },
   "devDependencies": {
     "eslint": "^5.15.3",
