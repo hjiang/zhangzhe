@@ -55,7 +55,7 @@ async function createPost(ctx) {
       raw: body,
       category: 5
     });
-    ctx.respond(`https://talk.nextfe.com/${res.data.topic_slug}`);
+    ctx.respond(`https://talk.nextfe.com/t/topic/${res.data.topic_id}`);
   } catch (e) {
     if (e.response) {
       ctx.respond('Error: ' + e.response.data);
