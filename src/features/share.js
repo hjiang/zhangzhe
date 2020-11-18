@@ -51,7 +51,7 @@ async function createPost(ctx) {
   console.log(`received: ${msg}`);
   try {
     let { title, url, body } = parseMsg(msg);
-    console.log(`parsed: ${{ title, url, body }}`);
+    console.log(`parsed: ${JSON.stringify({ title, url, body })}`);
     if (!title || title.length === 0) {
       title = await getTitle(url);
       console.log(`fetched title: ${title}`);
@@ -66,7 +66,7 @@ async function createPost(ctx) {
   } catch (e) {
     console.error(e);
     if (e.response) {
-      ctx.respond('Error: ' + e.response.data);
+      ctx.respond('Error: ' + JSON.stringify(e.response.data));
     } else if (e.request) {
       ctx.respond('Unable to send request: ' + e.request);
     } else {
