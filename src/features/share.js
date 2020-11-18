@@ -42,12 +42,16 @@ function discourseApi() {
   });
 }
 
+function getTitle(url) {
+  return new Promise(resolve => getTitleAtUrl(url, resolve));
+}
+
 async function createPost(ctx) {
   const msg = ctx.matches[1];
   try {
     let { title, url, body } = parseMsg(msg);
     if (!title || title.length === 0) {
-      title = await getTitleAtUrl(url);
+      title = await getTitle(url);
     }
     const discourse = discourseApi();
     const res = await discourse.post('/posts.json', {
