@@ -4,6 +4,7 @@ const role = require('role-model');
 const vacation = require('./features/vacation');
 const urlShortener = require('./features/url-shortener');
 const nlp = require('./features/nlp');
+const share = require('./features/share');
 
 const app = role.createRobotApp({
   chatService: 'zulip',
@@ -31,6 +32,10 @@ app.robot.addHandler(/trainIntent (.*)=>(.*)/, ctx => {
 
 app.robot.addHandler(/addAnswer (.*)=>(.*)/, ctx => {
   nlp.handleAddAnswer(lc, ctx);
+});
+
+app.robot.addHandler(/\s*share \s*(.*)/, ctx => {
+  share.createPost(ctx);
 });
 
 app.robot.addHandler(/(.*)/, ctx => {
